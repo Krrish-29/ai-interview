@@ -1,0 +1,47 @@
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/apps
+      - /apps/node_modules
+      - /apps/.next
+    command: npm run dev
+
+
+    # networks:
+    #   - front-tier
+    #   - back-tier
+    # configs:
+    #   - httpd-config
+    # secrets:
+    #   - server-certificate
+
+  # backend:
+  #   image: example/database
+  #   volumes:
+  #     - db-data:/etc/data
+  #   networks:
+  #     - back-tier
+
+# volumes:
+#   db-data:
+#     driver: flocker
+#     driver_opts:
+#       size: "10GiB"
+
+# configs:
+#   httpd-config:
+#     external: true
+
+# secrets:
+#   server-certificate:
+#     external: true
+
+# networks:
+#   # The presence of these objects is sufficient to define them
+#   front-tier: {}
+#   back-tier: {}
